@@ -1,18 +1,21 @@
 <template>
   <div id="app">
     <TheNavbar />
-    <div class="container">
+    <main class="container">
       <router-view/>
-    </div>
+    </main>
+    <TheFooter />
   </div>
 </template>
 
 <script>
 import TheNavbar from './components/TheNavbar'
+import TheFooter from './components/TheFooter'
 
 export default {
   components: {
-    TheNavbar
+    TheNavbar,
+    TheFooter
   }
 }
 </script>

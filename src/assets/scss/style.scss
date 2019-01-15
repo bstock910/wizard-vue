@@ -4,3 +4,15 @@
 body {
   font-family: 'IBM Plex Sans', sans-serif;
 }
+
+.spacer {
+  margin: 20px;
+}
+
+.nav-button {
+  margin: 0 5px;
+  border: 0;
+}
+
+$button-active-border-color: #fff;
+$button-border-color: #fff;

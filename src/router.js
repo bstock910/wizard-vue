@@ -1,10 +1,15 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import PageHome from '@/pages/PageHome'
+import PageNotFound from '@/pages/PageNotFound'
 
 Vue.use(Router)
 
-export default new Router({
+function loadPage (page) {
+  return () => import(/* webpackChunkName: "page-[request]" */ `@/pages/Page${page}Setup.vue`)
+}
+
+const router = new Router({
   routes: [
     {
       path: '/',
@@ -12,12 +17,51 @@ export default new Router({
       component: PageHome
     },
     {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
+      path: '/account',
+      name: 'account',
+      component: loadPage('Account')
+    },
+    {
+      path: '/vaccines',
+      name: 'vaccines',
+      component: loadPage('VaccineReminder')
+    },
+    {
+      path: '/appointments',
+      name: 'appointments',
+      component: loadPage('AppointmentReminder')
+    },
+    {
+      path: '/recalls',
+      name: 'recalls',
+      component: loadPage('Recall')
+    },
+    {
+      path: '/reactivation',
+      name: 'reactivation',
+      component: loadPage('Reactivation')
+    },
+    {
+      path: '/postcards',
+      name: 'postcards',
+      component: loadPage('Card')
+    },
+    {
+      path: '/scheduling',
+      name: 'scheduling',
+      component: loadPage('Scheduling')
+    },
+    {
+      path: '/surveys',
+      name: 'surveys',
+      component: loadPage('Survey')
+    },
+    {
+      path: '*',
+      name: 'notFound',
+      component: PageNotFound
     }
-  ]
+  ],
+  mode: 'history'
 })
+export default router
